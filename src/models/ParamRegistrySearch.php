@@ -59,7 +59,7 @@ class ParamRegistrySearch extends ParamRegistry
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'client_id' => $this->client_id,
+            'contact_id' => $this->contact_id,
             'param_id' => $this->param_id,
             'value' => $this->value,
             'updated_at' => $this->updated_at,

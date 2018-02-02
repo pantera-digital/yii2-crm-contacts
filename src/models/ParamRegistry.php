@@ -8,16 +8,9 @@ use yii\db\ActiveRecord;
  * This is the model class for table "crm_contact_param_registry".
  *
  * @property int $id
- * @property int $client_id
+ * @property int $contact_id
  * @property int $param_id
  * @property int $value_int
- * @property string $value_varchar
- * @property string $value_decimal
- * @property string $value_date
- * @property resource $value_binary
- * @property string $value_text
- * @property string $created_at
- * @property string $updated_at
  * @property int $user_id
  *
  * @property Param $param
@@ -39,9 +32,10 @@ class ParamRegistry extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['client_id', 'param_id', 'user_id'], 'required'],
+            [['contact_id', 'param_id', 'user_id'], 'required'],
             [['value'], 'safe'],
-            [['client_id', 'param_id', 'value_int', 'user_id'], 'integer'],
+            [['contact_id', 'param_id', 'value_int', 'user_id'], 'integer'],
+            [['contact_id'], 'exist', 'skipOnError' => true, 'targetClass' => Contact::className(), 'targetAttribute' => ['contact_Id' => 'id']],
             [['param_id'], 'exist', 'skipOnError' => true, 'targetClass' => Param::className(), 'targetAttribute' => ['param_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Yii::$app->getModule('user')->userModel->className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
@@ -67,6 +61,7 @@ class ParamRegistry extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Param::className(), ['id' => 'param_id']);
     }
+
 
     /**
      * @return \yii\db\ActiveQuery
