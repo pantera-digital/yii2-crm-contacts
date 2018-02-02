@@ -48,6 +48,6 @@ class ParamGroup extends \yii\db\ActiveRecord
      */
     public function getClientParams()
     {
-        return $this->hasMany(ClientParams::className(), ['group_id' => 'id']);
+        return $this->hasMany(Param::className(), ['group_id' => 'id']);
     }
 }

@@ -17,9 +17,8 @@ class ParamRegistrySearch extends ParamRegistry
     public function rules()
     {
         return [
-            [['id', 'client_id', 'param_id', 'value_int', 'user_id'], 'integer'],
-            [['value_varchar', 'value_date', 'value_binary', 'value_text', 'created_at', 'updated_at'], 'safe'],
-            [['value_decimal'], 'number'],
+            [['id', 'client_id', 'param_id', 'user_id'], 'integer'],
+            [['value'], 'safe'],
         ];
     }
 
@@ -62,10 +61,7 @@ class ParamRegistrySearch extends ParamRegistry
             'id' => $this->id,
             'client_id' => $this->client_id,
             'param_id' => $this->param_id,
-            'value_int' => $this->value_int,
-            'value_decimal' => $this->value_decimal,
-            'value_date' => $this->value_date,
-            'created_at' => $this->created_at,
+            'value' => $this->value,
             'updated_at' => $this->updated_at,
             'user_id' => $this->user_id,
         ]);

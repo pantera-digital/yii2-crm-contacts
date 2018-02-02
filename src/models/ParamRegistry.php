@@ -1,9 +1,8 @@
 <?php
 
 namespace pantera\crm\contacts\models;
-
-use dektrium\user\models\User;
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "crm_contact_param_registry".
@@ -21,8 +20,8 @@ use Yii;
  * @property string $updated_at
  * @property int $user_id
  *
- * @property ClientParams $param
- * @property User $user
+ * @property Param $param
+ * @property ActiveRecord $user
  */
 class ParamRegistry extends \yii\db\ActiveRecord
 {
@@ -41,13 +40,10 @@ class ParamRegistry extends \yii\db\ActiveRecord
     {
         return [
             [['client_id', 'param_id', 'user_id'], 'required'],
+            [['value'], 'safe'],
             [['client_id', 'param_id', 'value_int', 'user_id'], 'integer'],
-            [['value_decimal'], 'number'],
-            [['value_date', 'created_at', 'updated_at'], 'safe'],
-            [['value_binary', 'value_text'], 'string'],
-            [['value_varchar'], 'string', 'max' => 255],
-            [['param_id'], 'exist', 'skipOnError' => true, 'targetClass' => ClientParams::className(), 'targetAttribute' => ['param_id' => 'id']],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['param_id'], 'exist', 'skipOnError' => true, 'targetClass' => Param::className(), 'targetAttribute' => ['param_id' => 'id']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Yii::$app->getModule('user')->userModel->className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -57,18 +53,10 @@ class ParamRegistry extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'client_id' => 'Client ID',
-            'param_id' => 'Param ID',
-            'value_int' => 'Value Int',
-            'value_varchar' => 'Value Varchar',
-            'value_decimal' => 'Value Decimal',
-            'value_date' => 'Value Date',
-            'value_binary' => 'Value Binary',
-            'value_text' => 'Value Text',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'user_id' => 'User ID',
+            'id' => 'ИД',
+            'client_id' => 'Контакт',
+            'param_id' => 'Параметр',
+            'value' => 'Значение',
         ];
     }
 
@@ -85,6 +73,6 @@ class ParamRegistry extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(User::className(), ['id' => 'user_id']);
+        return $this->hasOne(Yii::$app->getModule('user')->userModel->className(), ['id' => 'user_id']);
     }
 }
