@@ -20,7 +20,6 @@ use yii\widgets\DetailView;
             'created_at',
             'comment:ntext',
             'gender',
-            'default_values:ntext',
         ],
     ]) ?>
 

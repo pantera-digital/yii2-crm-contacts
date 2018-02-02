@@ -13,41 +13,6 @@ use yii\bootstrap\ActiveForm;
 ?>
 <style>
     .crm-contacts-form .form-horizontal .control-label {text-align: left;}
-    .crm-contacts-form textarea.form-control {height: 100px; min-height: 0;}
-    .crm-contacts-form .required .control-label:after {
-        content: " *";
-        color: red;
-        position: relative;
-        top: -2px;
-    }
-    .crm-contacts-form .form-group {margin-bottom: 7px;}
-    .crm-contacts-form .control-label {font-weight: 500;}
-    .crm-contacts-form .input-group {max-width: 250px;}
-    .crm-contacts-form .panel-body {
-        padding: 40px 30px 10px;
-    }
-    .crm-contacts-form .form-control {
-        border: 0 none;
-        box-shadow: none !important;
-        border-bottom: 1px solid #ccc;
-        border-radius: 0;
-        padding-left: 0;
-    }
-    .crm-contacts-form .input-group-addon {
-        border: 0 none;
-        background: transparent !important;
-        padding-left: 0;
-    }
-    .crm-contacts-form .help-block {font-size: 12px;}
-    .crm-contacts-form .divider {height: 2em;}
-    .crm-contacts-form .form-actions {
-        position: sticky;
-        bottom: 0;
-        padding: 15px 0;
-        background: #f7f7f7;
-        z-index: 100;
-        margin-top: -15px;
-    }
 </style>
 <div class="crm-contacts-form">
 
@@ -104,7 +69,6 @@ use yii\bootstrap\ActiveForm;
                     <div class="control-label col-sm-4">
                         <?=$param->name?>
                     </div>
-
                     <div class="col-sm-8">
                         <?=$form->field($model,'Params['.$param->id.']')->dropDownList($param->getValues())->label(false)?>
                         <?php if(0):?>
