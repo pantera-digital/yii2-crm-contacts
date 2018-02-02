@@ -7,7 +7,7 @@ use Codeception\Exception\ConfigurationException;
 class Module extends \yii\base\Module
 {
     public $userModel = null;
-
+    public $defaultRoute = 'contacts/index';
     public function init()
     {
         parent::init();
