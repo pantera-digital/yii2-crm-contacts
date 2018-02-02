@@ -1,0 +1,11 @@
+{
+    "name": "pantera-digital/yii2-crm-contacts",
+    "description": "Yii2 CRM contacts module",
+    "type": "yii2-extension",
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "pantera\\crm\\contacts\\": "src\\"
+        }
+    }
+}
