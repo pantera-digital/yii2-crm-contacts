@@ -62,7 +62,6 @@ class ParamRegistrySearch extends ParamRegistry
             'contact_id' => $this->contact_id,
             'param_id' => $this->param_id,
             'value' => $this->value,
-            'updated_at' => $this->updated_at,
             'user_id' => $this->user_id,
         ]);
 
