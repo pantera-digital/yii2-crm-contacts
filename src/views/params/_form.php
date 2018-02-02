@@ -1,6 +1,8 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
+use pantera\crm\contacts\models\ParamGroup;
 
 /* @var $this yii\web\View */
 /* @var $model pantera\crm\contacts\models\Param */
@@ -11,9 +13,9 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'group_id')->textInput() ?>
-
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'group_id')->dropDownList(ArrayHelper::map(ParamGroup::find()->all(), 'id', 'name'), ['prompt' => '--']) ?>
 
     <?= $form->field($model, 'default_values')->textarea() ?>
   

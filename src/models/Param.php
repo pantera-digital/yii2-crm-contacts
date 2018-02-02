@@ -44,7 +44,7 @@ class Param extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'group_id' => 'Group ID',
+            'group_id' => 'Group',
             'name' => 'Name',
             'default_values' => 'Default values'
         ];
