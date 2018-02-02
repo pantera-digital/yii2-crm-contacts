@@ -33,12 +33,12 @@ class ParamRegistry extends \yii\db\ActiveRecord
     {
         return [
             [['contact_id', 'param_id', 'user_id'], 'required'],
-            [['contact_id', 'param_id'], 'unique', 'attribute' => ['param_id', 'contact_id']],
+            [['contact_id', 'param_id'], 'unique', 'targetAttribute' => ['param_id', 'contact_id']],
             [['value'], 'safe'],
-            [['contact_id', 'param_id', 'value_int', 'user_id'], 'integer'],
-            [['contact_id'], 'exist', 'skipOnError' => true, 'targetClass' => Contact::className(), 'targetAttribute' => ['contact_Id' => 'id']],
+            [['contact_id', 'param_id', 'user_id'], 'integer'],
+            [['contact_id'], 'exist', 'skipOnError' => true, 'targetClass' => Contact::className(), 'targetAttribute' => ['contact_id' => 'id']],
             [['param_id'], 'exist', 'skipOnError' => true, 'targetClass' => Param::className(), 'targetAttribute' => ['param_id' => 'id']],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Yii::$app->getModule('user')->userModel->className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Yii::$app->getModule('contacts')->userModel, 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 

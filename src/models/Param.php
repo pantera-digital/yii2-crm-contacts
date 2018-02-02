@@ -73,7 +73,7 @@ class Param extends \yii\db\ActiveRecord
             $values = explode(PHP_EOL,$this->default_values);
         }
         foreach($values as $value) {
-            $result[][$value] = $value;
+            $result[trim($value)] = trim($value);
         }
 
         return $result;
