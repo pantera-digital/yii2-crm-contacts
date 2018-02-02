@@ -64,7 +64,7 @@ use yii\bootstrap\ActiveForm;
             <div class="h4"><?=$group_name?></div>
             <hr/>
             <?php foreach ($groupParams as $param):?>
-                <?=$form->field($model,'Params['.$param->id.']')->dropDownList($param->getValues())->label($param->name)?>
+                <?=$form->field($model,'Params['.$param->id.']')->dropDownList($param->getValues(), ['prompt' => '--'])->label($param->name)?>
                 <?php if(0):?>
                     <?= Select2::widget([
                         'data' => ArrayHelper::map($param->getValues(),'name','name'),
