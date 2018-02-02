@@ -5,9 +5,10 @@ namespace pantera\crm\contacts\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use pantera\crm\contacts\models\Param;
 
 /**
- * ParamsSearch represents the model behind the search form of `Params`.
+ * ParamSearch represents the model behind the search form about `pantera\crm\contacts\models\Param`.
  */
 class ParamSearch extends Param
 {
@@ -42,8 +43,6 @@ class ParamSearch extends Param
     {
         $query = Param::find();
 
-        // add conditions that should always apply here
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -56,7 +55,6 @@ class ParamSearch extends Param
             return $dataProvider;
         }
 
-        // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
             'group_id' => $this->group_id,
