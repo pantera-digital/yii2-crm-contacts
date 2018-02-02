@@ -1,5 +1,7 @@
 <?php
 
+use pantera\crm\contacts\models\Param;
+use pantera\crm\contacts\models\ParamGroup;
 use yii\db\Migration;
 
 /**
@@ -15,7 +17,7 @@ class m170828_050225_create_client_params_table extends Migration
      */
     public function up()
     {
-        $this->createTable('client_params', [
+        $this->createTable(Param::tableName(), [
             'id' => $this->primaryKey(),
             'group_id' => $this->integer()->notNull(),
             'name' => $this->string(255)->notNull(),
@@ -24,16 +26,16 @@ class m170828_050225_create_client_params_table extends Migration
         // creates index for column `group_id`
         $this->createIndex(
             'idx-client_params-group_id',
-            'client_params',
-            'group_id'
+                   Param::tableName(),
+           'group_id'
         );
 
         // add foreign key for table `client_params_groups`
         $this->addForeignKey(
             'fk-client_params-group_id',
-            'client_params',
+                   Param::tableName(),
             'group_id',
-            'client_params_groups',
+                    ParamGroup::tableName(),
             'id',
             'CASCADE'
         );
@@ -47,15 +49,15 @@ class m170828_050225_create_client_params_table extends Migration
         // drops foreign key for table `client_params_groups`
         $this->dropForeignKey(
             'fk-client_params-group_id',
-            'client_params'
+            Param::tableName()
         );
 
         // drops index for column `group_id`
         $this->dropIndex(
             'idx-client_params-group_id',
-            'client_params'
+            Param::tableName()
         );
 
-        $this->dropTable('client_params');
+        $this->dropTable(Param::tableName());
     }
 }

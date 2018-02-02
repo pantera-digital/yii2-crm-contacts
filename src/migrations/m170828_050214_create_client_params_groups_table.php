@@ -1,5 +1,6 @@
 <?php
 
+use pantera\crm\contacts\models\ParamGroup;
 use yii\db\Migration;
 
 /**
@@ -12,7 +13,7 @@ class m170828_050214_create_client_params_groups_table extends Migration
      */
     public function up()
     {
-        $this->createTable('client_params_groups', [
+        $this->createTable(ParamGroup::tableName(), [
             'id' => $this->primaryKey(),
             'name' => $this->string(255)->notNull(),
         ]);
@@ -23,6 +24,6 @@ class m170828_050214_create_client_params_groups_table extends Migration
      */
     public function down()
     {
-        $this->dropTable('client_params_groups');
+        $this->dropTable(ParamGroup::tableName());
     }
 }

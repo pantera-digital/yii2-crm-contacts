@@ -1,6 +1,4 @@
 <?php
-
-use common\modules\crm\models\eav\ClientParams;
 use pantera\crm\contacts\models\Contact;
 use yii\db\Migration;
 
