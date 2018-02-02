@@ -27,7 +27,7 @@ class Param extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['group_id', 'name'], 'required'],
+            [['name'], 'required'],
             [['group_id'], 'integer'],
             [['name'], 'string', 'max' => 255],
             [['default_values'],'safe'],
