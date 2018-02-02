@@ -10,5 +10,8 @@
         "psr-4": {
             "pantera\\crm\\contacts\\": "src\\"
         }
+    },
+    "extra": {
+        "bootstrap": "pantera\\crm\\contacts\\Bootstrap"
     }
 }
