@@ -102,8 +102,9 @@ class ContactSearch extends Contact
             ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'comment', $this->comment])
             ->andFilterWhere(['like', 'gender', $this->gender]);
-        $query->andWhere(
-            ['id' => $clientIds]);
+            if(!empty($this->Params)) {
+                $query->andWhere(['id' => $clientIds]);
+            }
 
         return $dataProvider;
     }
