@@ -74,14 +74,13 @@ class ContactSearch extends Contact
         foreach ($this->Params as $param_id => $value) {
             if(!empty($value)) {
                 $applyCustomParams = true;
-                $registryQuery->andFilterWhere([
-                    'AND',
+                $registryQuery->andFilterWhere(
                     [
                         'AND',
                         ['=','param_id', $param_id],
                         ['LIKE','value',$value],
                     ]
-                ]);
+                );
             }
         }
         $clientIds = $registryQuery->column();
