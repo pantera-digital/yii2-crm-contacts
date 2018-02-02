@@ -31,7 +31,7 @@ class Param extends \yii\db\ActiveRecord
             [['group_id'], 'integer'],
             [['name'], 'string', 'max' => 255],
             [['default_values'],'safe'],
-            [['group_id'], 'exist', 'skipOnError' => true, 'targetClass' => ClientParamsGroups::className(), 'targetAttribute' => ['group_id' => 'id']],
+            [['group_id'], 'exist', 'skipOnError' => true, 'targetClass' => ParamGroup::className(), 'targetAttribute' => ['group_id' => 'id']],
         ];
     }
 
@@ -53,7 +53,7 @@ class Param extends \yii\db\ActiveRecord
      */
     public function getGroup()
     {
-        return $this->hasOne(ClientParamsGroups::className(), ['id' => 'group_id']);
+        return $this->hasOne(ParamGroup::className(), ['id' => 'group_id']);
     }
 
     /**
@@ -61,14 +61,6 @@ class Param extends \yii\db\ActiveRecord
      */
     public function getClientParamsRegistries()
     {
-        return $this->hasMany(ClientParamsRegistry::className(), ['param_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getClientParamsValues()
-    {
-        return $this->hasMany(ClientParamsValues::className(), ['param_id' => 'id']);
+        return $this->hasMany(ParamRegistry::className(), ['param_id' => 'id']);
     }
 }
