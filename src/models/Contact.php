@@ -17,6 +17,7 @@ use Yii;
  */
 class Contact extends \yii\db\ActiveRecord
 {
+    public $Params = [];
     const GENDER_MALE = 'MALE';
     const GENDER_FEMALE = 'FEMALE';
     const GENDER_NO = 'NO';

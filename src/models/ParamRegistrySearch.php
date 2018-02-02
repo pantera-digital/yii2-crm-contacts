@@ -65,10 +65,6 @@ class ParamRegistrySearch extends ParamRegistry
             'user_id' => $this->user_id,
         ]);
 
-        $query->andFilterWhere(['like', 'value_varchar', $this->value_varchar])
-            ->andFilterWhere(['like', 'value_binary', $this->value_binary])
-            ->andFilterWhere(['like', 'value_text', $this->value_text]);
-
         return $dataProvider;
     }
 }

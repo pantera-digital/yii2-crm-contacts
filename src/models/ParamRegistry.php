@@ -12,7 +12,7 @@ use yii\db\ActiveRecord;
  * @property int $param_id
  * @property int $value_int
  * @property int $user_id
- *
+ * @property string $value
  * @property Param $param
  * @property ActiveRecord $user
  */

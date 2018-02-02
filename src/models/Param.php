@@ -10,9 +10,11 @@ use Yii;
  * @property int $id
  * @property int $group_id
  * @property string $name
+ * @property string $default_values
  */
 class Param extends \yii\db\ActiveRecord
 {
+
     /**
      * @inheritdoc
      */
@@ -62,5 +64,18 @@ class Param extends \yii\db\ActiveRecord
     public function getClientParamsRegistries()
     {
         return $this->hasMany(ParamRegistry::className(), ['param_id' => 'id']);
+    }
+
+    public function getValues() {
+        $result = [];
+        $values = [];
+        if($this->default_values) {
+            $values = explode(PHP_EOL,$this->default_values);
+        }
+        foreach($values as $value) {
+            $result[][$value] = $value;
+        }
+
+        return $result;
     }
 }

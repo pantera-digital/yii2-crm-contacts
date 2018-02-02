@@ -2,6 +2,7 @@
 
 namespace pantera\crm\contacts\controllers;
 
+use pantera\crm\contacts\models\Param;
 use Yii;
 use pantera\crm\contacts\models\Contact;
 use pantera\crm\contacts\models\ContactSearch;
@@ -82,7 +83,7 @@ class ContactsController extends Controller
     public function actionCreate()
     {
         $request = Yii::$app->request;
-        $model = new Contact();  
+        $model = new Contact();
 
         if($request->isAjax){
             /*
@@ -94,6 +95,7 @@ class ContactsController extends Controller
                     'title'=> "Create new Contact",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
+                        'params' => Param::find()->all()
                     ]),
                     'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
                                 Html::button('Save',['class'=>'btn btn-primary','type'=>"submit"])
@@ -113,6 +115,7 @@ class ContactsController extends Controller
                     'title'=> "Create new Contact",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
+                        'params' => Param::find()->all(),
                     ]),
                     'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
                                 Html::button('Save',['class'=>'btn btn-primary','type'=>"submit"])
@@ -128,6 +131,7 @@ class ContactsController extends Controller
             } else {
                 return $this->render('create', [
                     'model' => $model,
+                    'params' => Param::find()->all(),
                 ]);
             }
         }
@@ -156,6 +160,7 @@ class ContactsController extends Controller
                     'title'=> "Update Contact #".$id,
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
+                        'params' => Param::find()->all(),
                     ]),
                     'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
                                 Html::button('Save',['class'=>'btn btn-primary','type'=>"submit"])
@@ -166,6 +171,7 @@ class ContactsController extends Controller
                     'title'=> "Contact #".$id,
                     'content'=>$this->renderAjax('view', [
                         'model' => $model,
+                        'params' => Param::find()->all(),
                     ]),
                     'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
                             Html::a('Edit',['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
@@ -175,6 +181,7 @@ class ContactsController extends Controller
                     'title'=> "Update Contact #".$id,
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
+                        'params' => Param::find()->all(),
                     ]),
                     'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
                                 Html::button('Save',['class'=>'btn btn-primary','type'=>"submit"])

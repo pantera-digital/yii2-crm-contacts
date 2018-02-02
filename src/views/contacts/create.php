@@ -10,5 +10,6 @@ use yii\helpers\Html;
 <div class="contact-create">
     <?= $this->render('_form', [
         'model' => $model,
+        'params' => $params,
     ]) ?>
 </div>

@@ -1,5 +1,6 @@
 <?php
 use pantera\crm\contacts\models\Contact;
+use pantera\crm\contacts\models\Param;
 use yii\db\Migration;
 
 /**
@@ -12,7 +13,7 @@ class m180116_160807_add_column_default_values_to_client_params_table extends Mi
      */
     public function safeUp()
     {
-        $this->addColumn(Contact::tableName(),'default_values',$this->text()->null());
+        $this->addColumn(Param::tableName(),'default_values',$this->text()->null());
     }
 
     /**
@@ -20,7 +21,7 @@ class m180116_160807_add_column_default_values_to_client_params_table extends Mi
      */
     public function safeDown()
     {
-        $this->dropColumn(Contact::tableName(),'default_values');
+        $this->dropColumn(Param::tableName(),'default_values');
     }
 
     /*
