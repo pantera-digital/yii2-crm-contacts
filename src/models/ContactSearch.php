@@ -70,9 +70,10 @@ class ContactSearch extends Contact
         $this->load($params);
         //Найдем всех клиентов по параметрам
         $registryQuery = ParamRegistry::find()->select('contact_id');
-        $criteriaArray = [];
+        $applyCustomParams = false;
         foreach ($this->Params as $param_id => $value) {
             if(!empty($value)) {
+                $applyCustomParams = true;
                 $registryQuery->andFilterWhere([
                     'OR',
                     [
@@ -102,7 +103,7 @@ class ContactSearch extends Contact
             ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'comment', $this->comment])
             ->andFilterWhere(['like', 'gender', $this->gender]);
-            if(!empty($this->Params)) {
+            if($applyCustomParams) {
                 $query->andWhere(['id' => $clientIds]);
             }
 
