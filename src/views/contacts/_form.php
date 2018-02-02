@@ -67,9 +67,10 @@ use yii\bootstrap\ActiveForm;
 
     <div class="divider"></div>
 
-    <?= $form->field($model, 'phone', [
-        'inputTemplate' => '<div class="input-group"><span class="input-group-addon"><i class="fa fa-phone fa-fw"></i></span>{input}</div>',
-    ])->textInput(['maxlength' => true, 'placeholder' => '+7(___)___-__-__']) ?>
+
+    <?= $form->field($model, 'phone')->widget(\yii\widgets\MaskedInput::className(), [
+        'mask' => '+7 (999) 999-99-99',
+    ]) ?>
 
     <?= $form->field($model, 'email', [
         'inputTemplate' => '<div class="input-group"><span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>{input}</div>',

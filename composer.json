@@ -3,6 +3,9 @@
     "description": "Yii2 CRM contacts module",
     "type": "yii2-extension",
     "minimum-stability": "dev",
+    "require": {
+        "johnitvn/yii2-ajaxcrud": "*"
+    },
     "autoload": {
         "psr-4": {
             "pantera\\crm\\contacts\\": "src\\"
