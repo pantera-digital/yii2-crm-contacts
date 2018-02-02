@@ -9,11 +9,11 @@ class CrmContactsAsset extends AssetBundle
     public $depends = [];
 
     public $js = [
-        'script.js',
+        'crm-contacts.js',
     ];
 
     public $css = [
-        'style.css',
+        'crm-contacts.css',
     ];
 
     public function init()
