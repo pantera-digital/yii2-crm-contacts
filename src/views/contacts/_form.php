@@ -42,14 +42,11 @@ use yii\bootstrap\ActiveForm;
     ])->textInput(['maxlength' => true, 'placeholder' => 'mail@mail.ru']) ?>
 
     <div class="divider"></div>
-    <?php if(0):?>
-        <?= $form->field($model, 'birth_date')->widget(\kartik\date\DatePicker::className(),[
-            'pluginOptions' => [
-                'format' => 'yyyy-mm-dd'
-            ],
-        ]) ?>
-    <?php endif;?>
-    <?= $form->field($model, 'birth_date')->textInput()?>
+    <?= $form->field($model, 'birth_date')->widget(\kartik\date\DatePicker::className(),[
+        'pluginOptions' => [
+            'format' => 'yyyy-mm-dd'
+        ],
+    ]) ?>
     <?= $form->field($model, 'comment')->textarea(['placeholder'=>'Дополнительные сведения о контакте']) ?>
     <?php
     $groupedParams = [];
