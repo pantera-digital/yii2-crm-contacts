@@ -75,7 +75,7 @@ class ContactSearch extends Contact
             if(!empty($value)) {
                 $applyCustomParams = true;
                 $registryQuery->andFilterWhere([
-                    'OR',
+                    'AND',
                     [
                         'AND',
                         ['=','param_id', $param_id],
