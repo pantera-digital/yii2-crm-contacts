@@ -33,6 +33,7 @@ class ParamRegistry extends \yii\db\ActiveRecord
     {
         return [
             [['contact_id', 'param_id', 'user_id'], 'required'],
+            [['contact_id', 'param_id'], 'unique', 'attribute' => ['param_id', 'contact_id']],
             [['value'], 'safe'],
             [['contact_id', 'param_id', 'value_int', 'user_id'], 'integer'],
             [['contact_id'], 'exist', 'skipOnError' => true, 'targetClass' => Contact::className(), 'targetAttribute' => ['contact_Id' => 'id']],
