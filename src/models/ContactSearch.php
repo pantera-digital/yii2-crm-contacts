@@ -5,17 +5,13 @@ namespace pantera\crm\contacts\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use pantera\crm\contacts\models\Contact;
 
 /**
- * ContactsSearch represents the model behind the search form of `Contacts`.
+ * ContactSearch represents the model behind the search form about `pantera\crm\contacts\models\Contact`.
  */
 class ContactSearch extends Contact
 {
-    /**
-    *
-    */
-    public $fio;
-
     /**
      * @inheritdoc
      */
@@ -23,7 +19,7 @@ class ContactSearch extends Contact
     {
         return [
             [['id'], 'integer'],
-            [['first_name', 'last_name', 'middle_name', 'phone', 'email', 'birth_date','fio','gender'], 'safe'],
+            [['first_name', 'last_name', 'middle_name', 'phone', 'email', 'birth_date', 'created_at', 'comment', 'gender', 'default_values'], 'safe'],
         ];
     }
 
@@ -47,8 +43,6 @@ class ContactSearch extends Contact
     {
         $query = Contact::find();
 
-        // add conditions that should always apply here
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -61,19 +55,20 @@ class ContactSearch extends Contact
             return $dataProvider;
         }
 
-        // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
             'birth_date' => $this->birth_date,
+            'created_at' => $this->created_at,
         ]);
 
         $query->andFilterWhere(['like', 'first_name', $this->first_name])
             ->andFilterWhere(['like', 'last_name', $this->last_name])
             ->andFilterWhere(['like', 'middle_name', $this->middle_name])
-            ->andFilterWhere(['like', 'gender', $this->gender])
             ->andFilterWhere(['like', 'phone', $this->phone])
             ->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like','concat(first_name," ",last_name," ",middle_name)', $this->fio]);
+            ->andFilterWhere(['like', 'comment', $this->comment])
+            ->andFilterWhere(['like', 'gender', $this->gender])
+            ->andFilterWhere(['like', 'default_values', $this->default_values]);
 
         return $dataProvider;
     }
