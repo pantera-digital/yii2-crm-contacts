@@ -38,7 +38,7 @@ use yii\bootstrap\ActiveForm;
     ]) ?>
 
     <?= $form->field($model, 'email', [
-        'inputTemplate' => '<div class="input-group"><span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>{input}</div>',
+        'inputTemplate' => '<div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope fa-fw"></i></span>{input}</div>',
     ])->textInput(['maxlength' => true, 'placeholder' => 'mail@mail.ru']) ?>
 
     <div class="divider"></div>
