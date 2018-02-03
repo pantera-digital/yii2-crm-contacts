@@ -5,7 +5,8 @@
     "minimum-stability": "dev",
     "require": {
         "johnitvn/yii2-ajaxcrud": "*",
-        "kartik-v/yii2-widget-datepicker": "@dev"
+        "kartik-v/yii2-widget-datepicker": "*",
+        "pantera-digital/yii2-grid": "*"
     },
     "autoload": {
         "psr-4": {
