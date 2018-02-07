@@ -7,21 +7,15 @@ $columns = [
         'class' => 'kartik\grid\CheckboxColumn',
         'width' => '20px',
     ],
-        // [
-        // 'class'=>'\kartik\grid\DataColumn',
-        // 'attribute'=>'id',
-    // ],
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'first_name',
-    ],
-    [
-        'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'last_name',
-    ],
-    [
-        'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'middle_name',
+        'format'=>'raw',
+        'value'=>function($data){
+            $genders = ['male', 'female'];
+            shuffle($genders);
+            return '<span class="text-avatar gender-' . $genders[0] . '">AA</span> ' . $data->last_name . ' ' . $data->first_name;
+        }
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
@@ -30,6 +24,27 @@ $columns = [
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'email',
+        'format'=>'email',
+    ],
+    [
+        'class'=>'\kartik\grid\DataColumn',
+        'header'=>'Параметры',
+        'filter'=>'<input class="form-control" type="text"/>',
+        'format'=>'raw',
+        'value'=>function($data){
+            $labels = [
+                '<span class="label label-default">Постоянный клиент</span>',
+                '<span class="label label-default">По рекомендации</span>',
+                '<span class="label label-default">30-40 лет</span>',
+            ];
+            $labels2 = [
+                '<span class="label label-success pull-right">Доволен</span>',
+                '<span class="label label-warning pull-right">Недоволен</span>',
+            ];
+            unset($labels[rand(-1, 4)]);
+            unset($labels2[rand(0, 1)]);
+            return implode(' ', $labels) . implode(' ', $labels2);
+        }
     ],
     // [
         // 'class'=>'\kartik\grid\DataColumn',
