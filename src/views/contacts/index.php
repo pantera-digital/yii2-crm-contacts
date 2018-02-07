@@ -23,6 +23,7 @@ CrudAsset::register($this);
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,
             'pjax'=>true,
+            'striped'=>false,
             'columns' => require(__DIR__.'/_columns.php'),
             'toggleDataOptions'=>[
                 'all' => [

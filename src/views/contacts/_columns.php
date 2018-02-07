@@ -6,6 +6,7 @@ $columns = [
     [
         'class' => 'kartik\grid\CheckboxColumn',
         'width' => '20px',
+        'mergeHeader' => false,
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
@@ -88,6 +89,8 @@ $columns[] = [
     'class' => 'kartik\grid\ActionColumn',
     'dropdown' => false,
     'vAlign'=>'middle',
+    'mergeHeader' => false,
+    'width' => 'auto',
     'urlCreator' => function($action, $model, $key, $index) {
         return Url::to([$action,'id'=>$key]);
     },
