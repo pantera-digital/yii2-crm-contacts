@@ -7,10 +7,6 @@ $columns = [
         'class' => 'kartik\grid\CheckboxColumn',
         'width' => '20px',
     ],
-    [
-        'class' => 'kartik\grid\SerialColumn',
-        'width' => '30px',
-    ],
         // [
         // 'class'=>'\kartik\grid\DataColumn',
         // 'attribute'=>'id',
@@ -80,14 +76,15 @@ $columns[] = [
     'urlCreator' => function($action, $model, $key, $index) {
         return Url::to([$action,'id'=>$key]);
     },
-    'viewOptions'=>['role'=>'modal-remote','title'=>'View','data-toggle'=>'tooltip'],
-    'updateOptions'=>['role'=>'modal-remote','title'=>'Update', 'data-toggle'=>'tooltip'],
+    'viewOptions'=>['role'=>'modal-remote','title'=>'View','data-toggle'=>'tooltip','label'=>'<i class="mdi mdi-perm-identity"></i>'],
+    'updateOptions'=>['role'=>'modal-remote','title'=>'Update', 'data-toggle'=>'tooltip','label'=>'<i class="mdi mdi-edit"></i>'],
     'deleteOptions'=>['role'=>'modal-remote','title'=>'Delete',
         'data-confirm'=>false, 'data-method'=>false,// for overide yii data api
         'data-request-method'=>'post',
         'data-toggle'=>'tooltip',
         'data-confirm-title'=>'Are you sure?',
-        'data-confirm-message'=>'Are you sure want to delete this item'],
+        'data-confirm-message'=>'Are you sure want to delete this item',
+        'label'=>'<i class="mdi mdi-delete"></i>'],
 ];
 
 return $columns;

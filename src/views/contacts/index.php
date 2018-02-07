@@ -2,7 +2,7 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\bootstrap\Modal;
-use kartik\grid\GridView;
+use pantera\grid\widgets\materialGridView\GridView;
 use johnitvn\ajaxcrud\CrudAsset; 
 use johnitvn\ajaxcrud\BulkButtonWidget;
 
@@ -24,25 +24,43 @@ CrudAsset::register($this);
             'filterModel' => $searchModel,
             'pjax'=>true,
             'columns' => require(__DIR__.'/_columns.php'),
+            'toggleDataOptions'=>[
+                'all' => [
+                    'icon' => false,
+                    'label' => '<i class="mdi mdi-unfold-more"></i>',
+                    'class' => 'btn btn-link',
+                    'title' => 'Show all data'
+                ],
+                'page' => [
+                    'icon' => false,
+                    'label' => '<i class="mdi mdi-unfold-less"></i>',
+                    'class' => 'btn btn-link',
+                    'title' => 'Show first page data'
+                ],
+            ],
+            'export'=>[
+                'icon' => false,
+                'label' => '<i class="mdi mdi-file-download"></i>',
+                'options' => [
+                    'class' => 'btn btn-link',
+                ]
+            ],
             'toolbar'=> [
                 ['content'=>
-                    Html::a('<i class="glyphicon glyphicon-plus"></i>', ['create'],
-                    ['role'=>'modal-remote','title'=> 'Create new Contacts','class'=>'btn btn-default']).
-                    Html::a('<i class="glyphicon glyphicon-repeat"></i>', [''],
-                    ['data-pjax'=>1, 'class'=>'btn btn-default', 'title'=>'Reset Grid']).
+                    Html::a('<i class="mdi mdi-person-add"></i>', ['create'],
+                    ['role'=>'modal-remote','title'=> 'Create new Contacts','class'=>'btn btn-link']).
+                    Html::a('<i class="mdi mdi-refresh"></i>', [''],
+                    ['data-pjax'=>1, 'class'=>'btn btn-link', 'title'=>'Reset Grid']).
                     '{toggleData}'.
                     '{export}'
                 ],
-            ],          
-            'striped' => true,
-            'condensed' => true,
-            'responsive' => true,          
+            ],
             'panel' => [
-                'type' => 'primary', 
+                'type' => 'default', 
                 'heading' => '<i class="glyphicon glyphicon-list"></i> Contacts listing',
-                'before'=>'<em>* Resize table columns just like a spreadsheet by dragging the column edges.</em>',
+                //'before'=>'<em>* Resize table columns just like a spreadsheet by dragging the column edges.</em>',
                 'after'=>BulkButtonWidget::widget([
-                            'buttons'=>Html::a('<i class="glyphicon glyphicon-trash"></i>&nbsp; Delete All',
+                            'buttons'=>Html::a('<i class="mdi mdi-delete mdi-inverse"></i>&nbsp; Delete All',
                                 ["bulkdelete"] ,
                                 [
                                     "class"=>"btn btn-danger btn-xs",
