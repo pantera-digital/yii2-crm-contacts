@@ -60,7 +60,7 @@ CrudAsset::register($this);
                 'type' => 'default', 
                 'heading' => '<i class="glyphicon glyphicon-list"></i> Contacts listing',
                 //'before'=>'<em>* Resize table columns just like a spreadsheet by dragging the column edges.</em>',
-                'after'=>BulkButtonWidget::widget([
+                'footer'=>BulkButtonWidget::widget([
                             'buttons'=>Html::a('<i class="mdi mdi-delete mdi-inverse"></i>&nbsp; Delete All',
                                 ["bulkdelete"] ,
                                 [
