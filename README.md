@@ -23,7 +23,8 @@ php yii migrate/up --migrationPath=@pantera/crm/contacts/migrations
 ```
 'modules' => [
     'contacts' => [
-        'class' => '\pantera\crm\contacts\Module',
+        'class' => 'pantera\crm\contacts\Module',
+        'userModel' => 'dektrium\user\models\User', // 'userModel' => 'common\models\User',
     ],
 ],
 ```
