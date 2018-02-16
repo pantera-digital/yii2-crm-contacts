@@ -5,7 +5,6 @@ namespace pantera\crm\contacts\controllers;
 use Yii;
 use pantera\crm\contacts\models\Param;
 use pantera\crm\contacts\models\ParamSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use \yii\web\Response;
@@ -16,21 +15,7 @@ use yii\helpers\Html;
  */
 class ParamsController extends Controller
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                    'bulkdelete' => ['post'],
-                ],
-            ],
-        ];
-    }
+
 
     /**
      * Lists all Param models.

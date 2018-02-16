@@ -6,7 +6,7 @@ use pantera\crm\contacts\models\Param;
 use Yii;
 use pantera\crm\contacts\models\Contact;
 use pantera\crm\contacts\models\ContactSearch;
-use yii\web\Controller;
+use pantera\crm\contacts\controllers\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use \yii\web\Response;
@@ -17,21 +17,7 @@ use yii\helpers\Html;
  */
 class ContactsController extends Controller
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                    'bulkdelete' => ['post'],
-                ],
-            ],
-        ];
-    }
+
 
     /**
      * Lists all Contact models.

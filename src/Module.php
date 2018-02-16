@@ -3,11 +3,32 @@
 namespace pantera\crm\contacts;
 
 use Codeception\Exception\ConfigurationException;
+use yii\db\ActiveRecord;
 
 class Module extends \yii\base\Module
 {
+    /**
+     * @property ActiveRecord|null $userModel
+     * Обязательная для заполнения модель пользователя.
+     */
     public $userModel = null;
+
+    /**
+     * @property string $defaultRoute
+     * Дефолтный экшен - грид контактов
+     */
     public $defaultRoute = 'contacts/index';
+
+    /**
+     * @var array $permissions
+     * Переменная будет оперировать доступом к контроллерам модуля
+     */
+    public $permissions = [];
+
+
+    /**
+     * @throws ConfigurationException
+     */
     public function init()
     {
         parent::init();
