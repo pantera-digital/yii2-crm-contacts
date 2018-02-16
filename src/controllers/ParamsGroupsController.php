@@ -7,6 +7,7 @@ use pantera\crm\contacts\models\ParamGroup;
 use pantera\crm\contacts\models\ParamGroupSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use pantera\crm\contacts\controllers\Controller;
 use \yii\web\Response;
 use yii\helpers\Html;
 
