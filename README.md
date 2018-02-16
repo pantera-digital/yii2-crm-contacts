@@ -25,6 +25,7 @@ php yii migrate/up --migrationPath=@pantera/crm/contacts/migrations
     'contacts' => [
         'class' => 'pantera\crm\contacts\Module',
         'userModel' => 'dektrium\user\models\User', // 'userModel' => 'common\models\User',
+        'permissions' => ['admin','manager','etc'], // будут применены ко всем контроллерам модуля 
     ],
 ],
 ```
