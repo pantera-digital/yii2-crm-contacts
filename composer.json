@@ -6,7 +6,8 @@
     "require": {
         "johnitvn/yii2-ajaxcrud": "*",
         "kartik-v/yii2-widget-datepicker": "*",
-        "pantera-digital/yii2-grid": "*"
+        "pantera-digital/yii2-grid": "*",
+        "pantera-digital/yii2-text-avatar": "@dev"
     },
     "autoload": {
         "psr-4": {
