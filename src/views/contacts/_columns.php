@@ -1,5 +1,6 @@
 <?php
 use pantera\crm\contacts\models\Param;
+use pantera\textAvatar\TextAvatarHelper;
 use yii\helpers\Url;
 
 $columns = [
@@ -13,9 +14,7 @@ $columns = [
         'attribute'=>'first_name',
         'format'=>'raw',
         'value'=>function($data){
-            $genders = ['male', 'female'];
-            shuffle($genders);
-            return '<span class="text-avatar gender-' . $genders[0] . '">AA</span> ' . $data->last_name . ' ' . $data->first_name;
+            return '<span class="text-avatar gender-' . strtolower($data->gender) . '">' . TextAvatarHelper::generate($data->fullName) . '</span> ' . $data->fullName;
         }
     ],
     [

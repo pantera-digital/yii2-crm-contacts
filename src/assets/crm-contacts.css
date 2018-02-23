@@ -1,3 +1,21 @@
 .table-responsive {
     overflow-x: hidden;
 }
+
+.text-avatar {
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  text-align: center;
+  line-height: 32px;
+  font-size: 18px;
+  background: #2780e3;
+  color: #fff;
+  border-radius: 34px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.text-avatar.gender-female {
+  background-color: #ea81d4;
+}
