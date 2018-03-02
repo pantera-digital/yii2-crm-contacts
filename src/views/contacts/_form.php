@@ -61,7 +61,7 @@ use yii\bootstrap\ActiveForm;
 
     <?php if(!$model->isNewRecord):?>
         <?=$form->field($model,'tags')->widget(Select2::className(),[
-            'data' => ArrayHelper::map(Param::find()->all(),'id','groupAndName','group.name'),
+            'data' => ArrayHelper::map(Param::find()->all(),'id','name','groupName'),
             'name' => 'tags',
             'options' => ['multiple' => true],
             'pluginOptions' => [
