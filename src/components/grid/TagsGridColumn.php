@@ -33,7 +33,7 @@ class TagsGridColumn extends DataColumn {
         $result = null;
 
         foreach ($model->tagsRelation as $tag) {
-            $result .= Html::tag('span',$tag->name,['class' => 'label label-warning']);
+            $result .= Html::tag('span',$tag->groupAndName,['class' => 'label label-warning']);
         }
 
         return $result;
