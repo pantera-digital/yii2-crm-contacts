@@ -59,16 +59,28 @@ class ContactSearch extends Contact
         ]);
 
         $this->load($params);
-        $applyCustomParams = false;
-        if(!empty($this->tags)) {
-            //Найдем всех клиентов по параметрам
-            $registryQuery = ParamRegistry::find()->select('contact_id');
-            $applyCustomParams = true;
+
+        if (!empty($this->tags)) {
+            $clientIds = [];
+            $clientIdsByTags = [];
+
+            // Найдем всех клиентов по каждому параметру
+            $registryQuery = ParamRegistry::find()->select('contact_id DISTINCT');
             foreach ($this->tags as $tag) {
-                $registryQuery->andWhere(['param_id' => $tag]);
+                $clientIdsByTags[] = $registryQuery->where(['param_id' => $tag])->column();
             }
-//            $registryQuery->andFilterWhere(['AND','param_id', $this->tags]);
-            $clientIds = $registryQuery->column();
+
+            // Сравним в цикле все наборы клиентов, чтобы получить общий набор, соответствующий всем параметрам
+            $step = 0;
+            foreach ($clientIdsByTags as $clientIdsByTag) {
+                if ($step == 0) {
+                    $clientIds = $clientIdsByTag;
+                } else {
+                    if (empty($clientIds)) break;
+                    $clientIds = array_intersect($clientIds, $clientIdsByTag);
+                }
+                $step++;
+            }
         }
 
         if (!$this->validate()) {
@@ -90,7 +102,7 @@ class ContactSearch extends Contact
               ->andFilterWhere(['like', 'email', $this->email])
               ->andFilterWhere(['like', 'comment', $this->comment])
               ->andFilterWhere(['like', 'gender', $this->gender]);
-        if($applyCustomParams) {
+        if (isset($clientIds)) {
             $query->andWhere(['id' => $clientIds]);
         }
 
