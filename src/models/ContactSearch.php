@@ -64,7 +64,10 @@ class ContactSearch extends Contact
             //Найдем всех клиентов по параметрам
             $registryQuery = ParamRegistry::find()->select('contact_id');
             $applyCustomParams = true;
-            $registryQuery->andFilterWhere(['param_id' => $this->tags]);
+            foreach ($this->tags as $tag) {
+                $registryQuery->andWhere(['param_id' => $tag]);
+            }
+//            $registryQuery->andFilterWhere(['AND','param_id', $this->tags]);
             $clientIds = $registryQuery->column();
         }
 
