@@ -25,7 +25,12 @@ class Param extends \yii\db\ActiveRecord
 
     public function getGroupAndName()
     {
-        return $this->group ? $this->group->name . ' - ' . $this->name : $this->name;
+        return $this->groupName === '#' ? "#{$this->name}" : "{$this->groupName} - {$this->name}";
+    }
+
+    public function getGroupName()
+    {
+        return $this->group ? $this->group->name : '#';
     }
 
     /**

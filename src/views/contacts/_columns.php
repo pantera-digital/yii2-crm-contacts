@@ -35,7 +35,7 @@ $columns = [
     [
         'class'=> TagsGridColumn::class,
         'filter' => Select2::widget([
-            'data' => ArrayHelper::map(Param::find()->all(),'id','groupAndName','group.name'),
+            'data' => ArrayHelper::map(Param::find()->all(),'id','name','groupName'),
             'model' => $searchModel,
             'pjaxContainerId' => 'crud-datatable-pjax',
             'attribute' => 'tags',
