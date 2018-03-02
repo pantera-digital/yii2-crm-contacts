@@ -1,8 +1,14 @@
 <?php
+use kartik\select2\Select2;
+use pantera\crm\contacts\components\grid\TagsGridColumn;
 use pantera\crm\contacts\models\Param;
 use pantera\textAvatar\TextAvatarHelper;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 
+/**
+ * @var \pantera\crm\contacts\models\ContactSearch $searchModel
+ */
 $columns = [
     [
         'class' => 'kartik\grid\CheckboxColumn',
@@ -27,24 +33,39 @@ $columns = [
         'format'=>'email',
     ],
     [
-        'class'=>'\kartik\grid\DataColumn',
-        'header'=>'Параметры',
-        'filter'=>'<input class="form-control" type="text"/>',
-        'format'=>'raw',
-        'value'=>function($data){
-            $labels = [
-                '<span class="label label-default">Постоянный клиент</span>',
-                '<span class="label label-default">По рекомендации</span>',
-                '<span class="label label-default">30-40 лет</span>',
-            ];
-            $labels2 = [
-                '<span class="label label-success pull-right">Доволен</span>',
-                '<span class="label label-warning pull-right">Недоволен</span>',
-            ];
-            unset($labels[rand(-1, 4)]);
-            unset($labels2[rand(0, 1)]);
-            return implode(' ', $labels) . implode(' ', $labels2);
-        }
+        'class'=> TagsGridColumn::class,
+        'filter' => Select2::widget([
+            'data' => ArrayHelper::map(Param::find()->all(),'id','name'),
+            'model' => $searchModel,
+            'pjaxContainerId' => 'crud-datatable-pjax',
+            'attribute' => 'tags',
+            'options' => [
+                'placeholder' => 'Укажите теги',
+                'multiple' => true
+            ],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+        ]),
+    ],
+    [
+        'class' => 'kartik\grid\ActionColumn',
+        'dropdown' => false,
+        'vAlign'=>'middle',
+        'mergeHeader' => false,
+        'width' => 'auto',
+        'urlCreator' => function($action, $model, $key, $index) {
+            return Url::to([$action,'id'=>$key]);
+        },
+        'viewOptions'=>['role'=>'modal-remote','title'=>'View','data-toggle'=>'tooltip','label'=>'<i class="mdi mdi-perm-identity"></i>'],
+        'updateOptions'=>['role'=>'modal-remote','title'=>'Update', 'data-toggle'=>'tooltip','label'=>'<i class="mdi mdi-edit"></i>'],
+        'deleteOptions'=>['role'=>'modal-remote','title'=>'Delete',
+            'data-confirm'=>false, 'data-method'=>false,// for overide yii data api
+            'data-request-method'=>'post',
+            'data-toggle'=>'tooltip',
+            'data-confirm-title'=>'Are you sure?',
+            'data-confirm-message'=>'Are you sure want to delete this item',
+            'label'=>'<i class="mdi mdi-delete"></i>'],
     ],
     // [
         // 'class'=>'\kartik\grid\DataColumn',
@@ -67,7 +88,7 @@ $columns = [
         // 'attribute'=>'default_values',
     // ],
 ];
-
+/*
 foreach (Param::find()->all() as $param) {
     $columns[] = [
         'class'=>'\kartik\grid\DataColumn',
@@ -75,6 +96,7 @@ foreach (Param::find()->all() as $param) {
         'header' => $param->name,
         'value' => function($data) use ($param) {
             /** @var \pantera\crm\contacts\models\Contact $data */
+/*
             $record = $data->getParamsRegistry()->andWhere(['param_id' => $param->id])->one();
             if($record) {
                 return $record->value;
@@ -84,24 +106,5 @@ foreach (Param::find()->all() as $param) {
         }
     ];
 }
-$columns[] = [
-    'class' => 'kartik\grid\ActionColumn',
-    'dropdown' => false,
-    'vAlign'=>'middle',
-    'mergeHeader' => false,
-    'width' => 'auto',
-    'urlCreator' => function($action, $model, $key, $index) {
-        return Url::to([$action,'id'=>$key]);
-    },
-    'viewOptions'=>['role'=>'modal-remote','title'=>'View','data-toggle'=>'tooltip','label'=>'<i class="mdi mdi-perm-identity"></i>'],
-    'updateOptions'=>['role'=>'modal-remote','title'=>'Update', 'data-toggle'=>'tooltip','label'=>'<i class="mdi mdi-edit"></i>'],
-    'deleteOptions'=>['role'=>'modal-remote','title'=>'Delete',
-        'data-confirm'=>false, 'data-method'=>false,// for overide yii data api
-        'data-request-method'=>'post',
-        'data-toggle'=>'tooltip',
-        'data-confirm-title'=>'Are you sure?',
-        'data-confirm-message'=>'Are you sure want to delete this item',
-        'label'=>'<i class="mdi mdi-delete"></i>'],
-];
-
+*/
 return $columns;

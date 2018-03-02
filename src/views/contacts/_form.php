@@ -8,7 +8,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\modules\crm\models\CrmContacts */
+/* @var $model \pantera\crm\contacts\models\Contact */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 <style>
@@ -59,29 +59,17 @@ use yii\bootstrap\ActiveForm;
     }
     ?>
 
-    <?php if ($params): ?>
-        <?php foreach($groupedParams as $group_name => $groupParams):?>
-            <div class="h4"><?=$group_name?></div>
-            <hr/>
-            <?php foreach ($groupParams as $param):?>
-                <?=$form->field($model,'Params['.$param->id.']')->dropDownList($param->getValues(), ['prompt' => '--'])->label($param->name)?>
-                <?php if(0):?>
-                    <?= Select2::widget([
-                        'data' => ArrayHelper::map($param->getValues(),'name','name'),
-                        'name' => "Params[".$paramId."]",
-                        'pluginOptions' => [
-                            'tags' => true,
-                            'allowClear' => true,
-                        ],
-                        'options' => [
-                            'prompt' => 'Выберите значение или укажите новое',
-                        ],
-                        'value' => empty($registry->param) ? (empty($registry->value_varchar) ? null : $registry->value_varchar) : @$registry->value_varchar,
-                    ])?>
-                <?php endif;?>
-            <?php endforeach;?>
-        <?php endforeach;?>
+    <?php if(!$model->isNewRecord):?>
+        <?=$form->field($model,'tags')->widget(Select2::className(),[
+            'data' => ArrayHelper::map(Param::find()->all(),'id','name'),
+            'name' => 'tags',
+            'options' => ['multiple' => true],
+            'pluginOptions' => [
+                'allowClear' => true,
+            ],
+        ])?>
     <?php endif;?>
+
 
     <?php ActiveForm::end(); ?>
 
