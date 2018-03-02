@@ -22,12 +22,21 @@ class Param extends \yii\db\ActiveRecord
     {
         return '{{%crm_contact_param}}';
     }
-    public function getGroupAndName() {
-        return $this->group->name . ': ' .$this->name;
+
+    public function getGroupAndName()
+    {
+        return $this->groupName === '#' ? "#{$this->name}" : "{$this->groupName} - {$this->name}";
     }
+
+    public function getGroupName()
+    {
+        return $this->group ? $this->group->name : '#';
+    }
+
     /**
      * @inheritdoc
      */
+    
     public function rules()
     {
         return [
