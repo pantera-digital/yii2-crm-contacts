@@ -49,6 +49,8 @@ class ContactSearch extends Contact
     {
         $query = Contact::find();
 
+        $query->orderBy('id DESC');
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort' => [
