@@ -8,9 +8,7 @@ use pantera\crm\contacts\models\ParamRegistry;
 use Yii;
 use pantera\crm\contacts\models\Contact;
 use pantera\crm\contacts\models\ContactSearch;
-use pantera\crm\contacts\controllers\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use \yii\web\Response;
 use yii\helpers\Html;
 
@@ -62,7 +60,6 @@ class ContactsController extends Controller
                 $statisticWidgetsData[$group->id]['labels'][] = $clientParam->name;
             }
         }
-
         foreach ($statisticWidgetsData as $key => $widgetData) {
             $statisticWidgetsData[$key]['datasets'][0]['backgroundColor'] = $colors[$key];
             $statisticWidgetsData[$key]['datasets'][0]['data'] = $data[$key];

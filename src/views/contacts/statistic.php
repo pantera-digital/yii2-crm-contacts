@@ -22,6 +22,20 @@ use dosamigos\chartjs\ChartJs;
                     ]);
                     ?>
                 </div>
+                <table class="table table-condensed table-bordered">
+                    <tbody>
+                    <?php foreach ($widgetData['labels'] as $key => $label):?>
+                        <tr style="background:<?=$widgetData['datasets'][0]['backgroundColor'][$key]?>;opacity: 0.8;">
+                            <th style="opacity: 1;">
+                                <?=$label?>
+                            </th>
+                            <td style="opacity: 1;">
+                                <?=$widgetData['datasets'][0]['data'][$key]?>
+                            </td>
+                        </tr>
+                    <?php endforeach;?>
+                    </tbody>
+                </table>
             </div>
         </div>
     <?php endforeach;?>
