@@ -3,6 +3,7 @@
 namespace pantera\crm\contacts\controllers;
 
 use pantera\crm\contacts\models\Param;
+use pantera\crm\contacts\models\ParamGroup;
 use Yii;
 use pantera\crm\contacts\models\Contact;
 use pantera\crm\contacts\models\ContactSearch;
@@ -34,6 +35,38 @@ class ContactsController extends Controller
         ]);
     }
 
+
+    public function actionStatistic() {
+        /** @var ParamGroup[] $params */
+        $groups = ParamGroup::find()->all();
+        $statisticWidgetsData = [];
+        $graphColors = [
+            '#ef9a9a',
+            "#29b6f6",
+            "#26c6da",
+            "#b2dfdb",
+            "#ffee58"
+        ];
+        $data = [];
+        $colors = [];
+        foreach ($groups as $group) {
+            /** @var Param $clientParam */
+            foreach ($group->clientParams as $clientParam) {
+                $color = $graphColors[array_rand($graphColors)] ;
+                $data[$group->id][] = $clientParam->getClientParamsRegistries()->count();
+                $colors[$group->id][] = $color;
+                $statisticWidgetsData[$group->id]['labels'][] = $clientParam->name;
+            }
+        }
+
+        foreach ($statisticWidgetsData as $key => $widgetData) {
+            $statisticWidgetsData[$key]['datasets'][0]['backgroundColor'] = $colors[$key];
+            $statisticWidgetsData[$key]['datasets'][0]['data'] = $data[$key];
+        }
+        return $this->render('statistic',[
+            'widgetsData' => $statisticWidgetsData,
+        ]);
+    }
 
     /**
      * Displays a single Contact model.
