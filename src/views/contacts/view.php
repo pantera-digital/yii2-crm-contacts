@@ -4,6 +4,7 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model pantera\crm\contacts\models\Contact */
+
 ?>
 <div class="contact-view">
  

@@ -1,8 +1,14 @@
 <?php
 /**
  * @var array $widgetsData
+ * @var \yii\web\View $this
  */
 use dosamigos\chartjs\ChartJs;
+
+$this->title = "Статистика контактов";
+$this->params['breadcrumbs'][] = ['url' => ['/contacts/contacts/index'], 'label' => 'Контакты'];
+$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="row">
     <?php foreach ($widgetsData as $key => $widgetData):?>
