@@ -4,6 +4,7 @@ namespace pantera\crm\contacts\controllers;
 
 use pantera\crm\contacts\models\Param;
 use pantera\crm\contacts\models\ParamGroup;
+use pantera\crm\contacts\models\ParamRegistry;
 use Yii;
 use pantera\crm\contacts\models\Contact;
 use pantera\crm\contacts\models\ContactSearch;
@@ -53,7 +54,10 @@ class ContactsController extends Controller
             /** @var Param $clientParam */
             foreach ($group->clientParams as $clientParam) {
                 $color = $graphColors[array_rand($graphColors)] ;
-                $data[$group->id][] = $clientParam->getClientParamsRegistries()->count();
+                $data[$group->id][] = $clientParam
+                    ->getClientParamsRegistries()
+                    ->rightJoin(Contact::tableName(), Contact::tableName() . '.id = ' . ParamRegistry::tableName() .  '.contact_id')
+                    ->count();
                 $colors[$group->id][] = $color;
                 $statisticWidgetsData[$group->id]['labels'][] = $clientParam->name;
             }

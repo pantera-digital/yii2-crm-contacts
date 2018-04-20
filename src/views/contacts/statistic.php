@@ -6,7 +6,7 @@ use dosamigos\chartjs\ChartJs;
 ?>
 <div class="row">
     <?php foreach ($widgetsData as $key => $widgetData):?>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <?=\pantera\crm\contacts\models\ParamGroup::findOne($key)->name;?>
