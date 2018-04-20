@@ -8,7 +8,8 @@
         "kartik-v/yii2-widget-datepicker": "*",
         "pantera-digital/yii2-grid": "*",
         "pantera-digital/yii2-text-avatar": "@dev",
-        "kartik-v/yii2-widget-select2": "@dev"
+        "kartik-v/yii2-widget-select2": "@dev",
+        "2amigos/yii2-chartjs-widget": "~2.0"
     },
     "autoload": {
         "psr-4": {
