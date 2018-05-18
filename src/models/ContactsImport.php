@@ -27,8 +27,7 @@ class ContactsImport extends Model
     public function upload()
     {
         if ($this->validate()) {
-            $this->_savedFile = \Yii::getAlias('@frontend/web/assets/' . $this->importFile->baseName . '.' . $this->importFile->extension    );
-            $this->importFile->saveAs($this->_savedFile);
+            $this->_savedFile = $this->importFile->tempName;
             return true;
         } else {
             return false;
