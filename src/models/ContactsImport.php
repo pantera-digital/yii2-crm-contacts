@@ -123,5 +123,6 @@ class ContactsImport extends Model
             }
 
         }
+        return true;
     }
 }
