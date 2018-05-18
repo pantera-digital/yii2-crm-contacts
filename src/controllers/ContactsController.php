@@ -2,6 +2,7 @@
 
 namespace pantera\crm\contacts\controllers;
 
+use pantera\crm\contacts\models\ContactsImport;
 use pantera\crm\contacts\models\Param;
 use pantera\crm\contacts\models\ParamGroup;
 use pantera\crm\contacts\models\ParamRegistry;
@@ -11,6 +12,7 @@ use pantera\crm\contacts\models\ContactSearch;
 use yii\web\NotFoundHttpException;
 use \yii\web\Response;
 use yii\helpers\Html;
+use yii\web\UploadedFile;
 
 /**
  * ContactsController implements the CRUD actions for Contact model.
@@ -278,6 +280,33 @@ class ContactsController extends Controller
             return $this->redirect(['index']);
         }
        
+    }
+
+
+    public function actionImport() {
+        $model = new ContactsImport();
+
+        if (Yii::$app->request->isPost) {
+            $model->load(Yii::$app->request->post());
+            if(empty($model->clients)) {
+                $model->importFile = UploadedFile::getInstance($model, 'importFile');
+                if ($model->parse()) {
+                    // file is uploaded successfully
+                    return $this->render('import_check',[
+                        'model' => $model,
+                        'data' => $model->parsedArray
+                    ]);
+                }
+            } else {
+                if ($model->saveClients()) {
+                    return $this->redirect(['index']);
+                }
+
+            }
+
+        }
+
+        return $this->render('import', ['model' => $model]);
     }
 
     /**
