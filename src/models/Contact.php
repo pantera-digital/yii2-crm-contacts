@@ -2,6 +2,7 @@
 
 namespace pantera\crm\contacts\models;
 
+use common\modules\crm\models\Visits;
 use Yii;
 
 /**
@@ -38,6 +39,10 @@ class Contact extends \yii\db\ActiveRecord
     public function getGenderName()
     {
         return $this->getGenders()[$this->gender];
+    }
+
+    public function getVisits() {
+        return $this->hasMany(Visits::className(),['phone' => 'phone']);
     }
 
     /**

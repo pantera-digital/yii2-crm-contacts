@@ -49,6 +49,12 @@ $columns = [
         ]),
     ],
     [
+        'header' => 'Визиты',
+        'value' => function($data) {
+            return $data->getVisits()->count() ?: 0;
+        }
+    ],
+    [
         'class' => 'kartik\grid\ActionColumn',
         'dropdown' => false,
         'vAlign'=>'middle',
