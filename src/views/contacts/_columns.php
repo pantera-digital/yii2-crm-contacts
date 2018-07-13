@@ -50,6 +50,7 @@ $columns = [
     ],
     [
         'header' => 'Визиты',
+        'format' => 'raw',
         'value' => function($data) {
             return \yii\helpers\Html::a($data->getVisits()->count() ?: 0,['/crm/visits',
                 'VisitsSearch' => [
